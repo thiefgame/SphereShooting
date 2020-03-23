@@ -8,9 +8,8 @@ public class BOSS1Gimmick : MonoBehaviour
     [SerializeField] GameObject Tentacls;
     GameObject Obj;
     float BOSSLife = 1.0f;
-    //[SerializeField] GameObject Slider;
-    //Slider BOSSSlider;
     [SerializeField] Slider BOSSSlider;
+    [SerializeField] GameObject Split1BOSS;
 
     void Start()
     {
@@ -22,6 +21,14 @@ public class BOSS1Gimmick : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 1, 0));
         BOSSSlider.value = BOSSLife;
+
+        if (BOSSLife <= 0)
+        {
+            Debug.Log("ライフゼロ");
+            Split1BOSS.SetActive(true);
+            Destroy(this.gameObject);
+        }
+
     }
 
     IEnumerator TentaclsInstantiate()
@@ -34,11 +41,13 @@ public class BOSS1Gimmick : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
-            BOSSLife -= 1;
+            Debug.Log("触れた");
+            BOSSLife -= 0.1f;
+            Debug.Log("ライフ減った");
         } 
     }
 }

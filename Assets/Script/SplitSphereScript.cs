@@ -19,5 +19,6 @@ public class SplitSphereScript : MonoBehaviour
 
         Destroy(GameObject.Find("Tentacls"));
         Destroy(GameObject.Find("Tentacls(Clone)"));
+        Destroy(GameObject.Find("SmallTentacls(Clone)"));
     }
 }
