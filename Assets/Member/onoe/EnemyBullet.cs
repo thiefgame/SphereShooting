@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-    GameObject mainCamera;
     GameObject planet;
     GameObject player;
+    Vector3 axis;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        mainCamera = player.transform.Find("Main Camera").gameObject;
         planet = GameObject.Find("Planet");
+        axis = Vector3.Cross(transform.position - planet.transform.position, player.transform.position - planet.transform.position);
         StartCoroutine(Movement());
     }
 
@@ -25,13 +25,19 @@ public class Bullet : MonoBehaviour
 
     IEnumerator Movement()
     {
-        Debug.Log("started");
         for(int i = 0; i < 100; i++)
         {
-            transform.RotateAround(planet.transform.position, mainCamera.transform.right, 1);
-            Debug.Log("spining");
+            transform.RotateAround(planet.transform.position, axis, 1);
             yield return null;
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
