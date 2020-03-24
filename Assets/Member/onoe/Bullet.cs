@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject mainCamera;
-    public GameObject planet;
-    public GameObject player;
+    GameObject mainCamera;
+    GameObject planet;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
