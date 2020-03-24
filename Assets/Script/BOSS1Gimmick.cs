@@ -14,21 +14,11 @@ public class BOSS1Gimmick : MonoBehaviour
     void Start()
     {
         StartCoroutine("TentaclsInstantiate");
-        //BOSSSlider = Slider.GetComponent<Slider>();
     }
 
     void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0, 1, 0));
-        BOSSSlider.value = BOSSLife;
-
-        if (BOSSLife <= 0)
-        {
-            Debug.Log("ライフゼロ");
-            Split1BOSS.SetActive(true);
-            Destroy(this.gameObject);
-        }
-
+        transform.Rotate(new Vector3(0, 1, 0));       
     }
 
     IEnumerator TentaclsInstantiate()
@@ -41,13 +31,19 @@ public class BOSS1Gimmick : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.Log("触れた");
             BOSSLife -= 0.1f;
-            Debug.Log("ライフ減った");
+            BOSSSlider.value = BOSSLife;
+
+            if (BOSSLife <= 0)
+            {
+                Split1BOSS.SetActive(true);
+                Destroy(this.gameObject);
+            }
         } 
     }
 }

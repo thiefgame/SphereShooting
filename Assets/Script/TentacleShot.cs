@@ -5,14 +5,12 @@ using UnityEngine;
 public class TentacleShot : MonoBehaviour
 {
     [SerializeField] float speed = 0.1f;
-    //[SerializeField] GameObject planet;
     bool shot;
 
     void Start()
     {
         shot = false;
         StartCoroutine("Shot");
-
     }
 
     private void Update()
@@ -20,7 +18,6 @@ public class TentacleShot : MonoBehaviour
         if (shot == true)
         {
             transform.position += transform.forward * speed;
-            //transform.RotateAround(planet.transform.position, transform.forward, 1);
         }
         
     }
