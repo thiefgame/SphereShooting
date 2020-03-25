@@ -11,7 +11,6 @@ public class TentacleShot : MonoBehaviour
     {
         shot = false;
         StartCoroutine("Shot");
-
     }
 
     private void Update()
