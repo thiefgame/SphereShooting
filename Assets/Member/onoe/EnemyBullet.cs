@@ -7,6 +7,9 @@ public class EnemyBullet : MonoBehaviour
     GameObject planet;
     GameObject player;
     Vector3 axis;
+    public float existDistance = 100;
+    [Range(0.1f, 2.0f)]
+    public float bulletSpeed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +28,9 @@ public class EnemyBullet : MonoBehaviour
 
     IEnumerator Movement()
     {
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < existDistance / bulletSpeed; i++)
         {
-            transform.RotateAround(planet.transform.position, axis, 1);
+            transform.RotateAround(planet.transform.position, axis, bulletSpeed);
             yield return null;
         }
         Destroy(this.gameObject);
