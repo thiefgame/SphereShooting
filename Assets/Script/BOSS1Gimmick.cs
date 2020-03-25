@@ -7,12 +7,13 @@ public class BOSS1Gimmick : MonoBehaviour
 {
     [SerializeField] GameObject Tentacls;
     GameObject Obj;
-    float BOSSLife = 1.0f;
-    [SerializeField] Slider BOSSSlider;
+    [SerializeField] float BOSSLife = 40.0f;
     [SerializeField] GameObject Split1BOSS;
+    [SerializeField] GameObject OverBossLife;
 
     void Start()
     {
+        //BossLifeScript = OverBossLife.GetComponent();
         StartCoroutine("TentaclsInstantiate");
     }
 
@@ -36,8 +37,9 @@ public class BOSS1Gimmick : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            BOSSLife -= 0.1f;
-            BOSSSlider.value = BOSSLife;
+            BOSSLife -= 1.0f;
+
+            OverBossLife.SendMessage("GetOverBossLife",0.01f);
 
             if (BOSSLife <= 0)
             {

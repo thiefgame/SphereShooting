@@ -33,7 +33,7 @@ public class ScoreScript : MonoBehaviour
     }
 
     //メッセージを受け取る
-    void OnScore(int num)
+    public void OnScore(int num)
     {
         //scoreに受け取った値を追加する
         score += num;

@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class TestBOSSPlayer : MonoBehaviour
 {
+    [SerializeField] GameObject Results;
+    [SerializeField] GameObject TitleButton;
+    [SerializeField] GameObject RetryButton;
     [SerializeField] GameObject gp;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject GameClearOrOver;
     float PlayerLife = 1.0f;
     [SerializeField] Slider PlayerSlider;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -53,6 +52,17 @@ public class TestBOSSPlayer : MonoBehaviour
         if (other.gameObject.tag == "BOSSBullet")
         {
             PlayerLife -= 0.1f;
+
+            if(PlayerLife <= 0)
+            {
+                Results.SetActive(true);
+                TitleButton.SetActive(true);
+                RetryButton.SetActive(true);
+                //Textコンポーネントを取得する
+                Text GameOver = GameClearOrOver.GetComponent<Text>();
+                GameOver.text = "GAME OVER";
+                Time.timeScale = 0f;
+            }
         }
     }
 }
