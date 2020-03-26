@@ -14,12 +14,12 @@ public class BOSS1Gimmick : MonoBehaviour
     void Start()
     {
         //BossLifeScript = OverBossLife.GetComponent();
-        StartCoroutine("TentaclsInstantiate");
+        //StartCoroutine("TentaclsInstantiate");
     }
 
     void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0, 1, 0));       
+        //transform.Rotate(new Vector3(0, 1, 0));       
     }
 
     IEnumerator TentaclsInstantiate()
@@ -28,7 +28,10 @@ public class BOSS1Gimmick : MonoBehaviour
         {
             yield return new WaitForSeconds(5f);
             Obj = Instantiate(Tentacls, this.transform.position, Quaternion.identity);
+            Obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
             Obj.transform.parent = this.transform;
+            
+            Debug.Log("位置を変えた");
         }
     }
 
@@ -44,6 +47,12 @@ public class BOSS1Gimmick : MonoBehaviour
             if (BOSSLife <= 0)
             {
                 Split1BOSS.SetActive(true);
+                //BOSSBulletタグのオブジェクトをすべて消す
+                GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("BOSSBullet");
+                foreach (GameObject obj in tagobjs)
+                {
+                    Destroy(obj);
+                }
                 Destroy(this.gameObject);
             }
         } 
