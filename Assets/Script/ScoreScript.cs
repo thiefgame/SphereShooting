@@ -23,10 +23,10 @@ public class ScoreScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        score += 1;
-        NowScore.text = "Score:" + score.ToString();
+        //score += 1;
+        //NowScore.text = "Score:" + score.ToString();
 
-        //NowScore.text = "Score:" + EnemyMove.score.ToString();
+        NowScore.text = "Score:" + EnemyMove.score.ToString();
     }
 
 
