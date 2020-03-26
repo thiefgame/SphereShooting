@@ -8,13 +8,13 @@ public class TestBOSSPlayer : MonoBehaviour
     [SerializeField] GameObject Results;
     [SerializeField] GameObject TitleButton;
     [SerializeField] GameObject RetryButton;
-    [SerializeField] GameObject gp;
-    [SerializeField] GameObject bullet;
+    //[SerializeField] GameObject gp;
+    //[SerializeField] GameObject bullet;
     [SerializeField] GameObject GameClearOrOver;
     float PlayerLife = 1.0f;
     [SerializeField] Slider PlayerSlider;
 
-
+    /*
     void Update()
     {
 
@@ -46,14 +46,16 @@ public class TestBOSSPlayer : MonoBehaviour
 
         PlayerSlider.value = PlayerLife;
     }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BOSSBullet")
+        if (other.gameObject.tag == "BOSSBullet" || other.gameObject.tag == "Enemy")
         {
+            Debug.Log("当たった");
             PlayerLife -= 0.1f;
-
-            if(PlayerLife <= 0)
+            PlayerSlider.value = PlayerLife;
+            if (PlayerLife <= 0)
             {
                 Results.SetActive(true);
                 TitleButton.SetActive(true);

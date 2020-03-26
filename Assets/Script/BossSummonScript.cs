@@ -8,20 +8,19 @@ public class BossSummonScript : MonoBehaviour
     [SerializeField] GameObject BOSS1;
     bool isCalledOnce = false;
     [SerializeField] GameObject planet;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject warnig;
+    [SerializeField] GameObject OverBossLife;
+
 
     // Update is called once per frame
     void Update()
     {
         terminationGaugeUp = EnemyMove.terminationGauge;
-        if (terminationGaugeUp >= 3)
+        if (terminationGaugeUp >= 10)
         {
             if (!isCalledOnce)
             {
+                StartCoroutine("warningUp");
                 Debug.Log("ゲージがたまった");
                 BOSS1.SetActive(true);
                 planet.GetComponent<EnemyGenerator>().enabled = false;
@@ -33,5 +32,17 @@ public class BossSummonScript : MonoBehaviour
                 isCalledOnce = true;
             }
         }
+    }
+
+    IEnumerator warningUp()
+    {
+        OverBossLife.SetActive(true);
+        warnig.SetActive(true);
+        //Time.timeScale = 0f;
+
+        yield return new WaitForSeconds(2f);
+
+        //Time.timeScale = 1f;
+        warnig.SetActive(false);
     }
 }

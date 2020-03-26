@@ -29,6 +29,7 @@ public class PauseScript : MonoBehaviour
     public void OnTitleButtonClicked()
     {
         Time.timeScale = 1f;
+        EnemyMove.terminationGauge = 0;
         SceneManager.LoadScene("Title");
     }
 
@@ -36,6 +37,7 @@ public class PauseScript : MonoBehaviour
     public void OnRetryButtonClicked()
     {
         Time.timeScale = 1f;
+        EnemyMove.terminationGauge = 0;
         SceneManager.LoadScene("kuroda");
     }
 
