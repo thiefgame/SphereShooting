@@ -30,6 +30,7 @@ public class PauseScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         EnemyMove.terminationGauge = 0;
+        EnemyMove.score = 0;
         SceneManager.LoadScene("Title");
     }
 
@@ -38,6 +39,7 @@ public class PauseScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         EnemyMove.terminationGauge = 0;
+        EnemyMove.score = 0;
         SceneManager.LoadScene("kuroda");
     }
 

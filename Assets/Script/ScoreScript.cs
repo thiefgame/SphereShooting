@@ -21,7 +21,7 @@ public class ScoreScript : MonoBehaviour
     }
     
 
-    private void FixedUpdate()
+    private void Update()
     {
         //score += 1;
         //NowScore.text = "Score:" + score.ToString();

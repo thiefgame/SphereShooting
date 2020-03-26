@@ -17,11 +17,6 @@ public class BOSS1Gimmick : MonoBehaviour
         //StartCoroutine("TentaclsInstantiate");
     }
 
-    void FixedUpdate()
-    {
-        //transform.Rotate(new Vector3(0, 1, 0));       
-    }
-
     IEnumerator TentaclsInstantiate()
     {
         while (true)
@@ -46,6 +41,7 @@ public class BOSS1Gimmick : MonoBehaviour
 
             if (BOSSLife <= 0)
             {
+                EnemyMove.score += 1000;
                 Split1BOSS.SetActive(true);
                 //BOSSBulletタグのオブジェクトをすべて消す
                 GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("BOSSBullet");
