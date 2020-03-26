@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour
     public GameObject bullet;
     Transform hana;
     bool movin = false;
+    EnemyGenerator eG;
 
     public enum Movement
     {
@@ -24,6 +25,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         planet = transform.parent.gameObject;
+        eG = planet.GetComponent<EnemyGenerator>();
         mainCamera = GameObject.Find("Player").transform.Find("Main Camera").gameObject;
         hana = transform.Find("Hana");
         if (movement == Movement.Random)
@@ -47,7 +49,7 @@ public class EnemyMove : MonoBehaviour
                 transform.RotateAround(planet.transform.position, mainCamera.transform.up, 1);
                 break;
             case Movement.Tombo:
-                transform.RotateAround(planet.transform.position, mainCamera.transform.right, 1);
+                transform.RotateAround(planet.transform.position, mainCamera.transform.right, planet.GetComponent<SpinPlanet>().DeltaSpin);
                 if (!movin) { movin = true; StartCoroutine(Tombo()); }
                 break;
         }
@@ -87,6 +89,7 @@ public class EnemyMove : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            eG.ENum--;
             Destroy(this.gameObject);
         }
 
