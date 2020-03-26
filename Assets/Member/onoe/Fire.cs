@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public GameObject bullet;
+    Bullet b_cs;
     public GameObject planet;
     public GameObject player;
     GameObject gp;
@@ -16,6 +17,7 @@ public class Fire : MonoBehaviour
     void Start()
     {
         gp = player.transform.Find("GeneratePoint").gameObject;
+        b_cs = bullet.GetComponent<Bullet>();
         if (auto) { StartCoroutine(AutoFire()); }
     }
     
@@ -24,7 +26,7 @@ public class Fire : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0) && !auto)
         {
-            Instantiate(bullet, gp.transform.position, Quaternion.Euler(player.transform.forward));
+            b_cs.Instantiate(bullet, gp.transform.position, Quaternion.Euler(player.transform.forward), planet, player);
         }
     }
 
@@ -32,7 +34,7 @@ public class Fire : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(bullet, gp.transform.position, Quaternion.Euler(player.transform.forward));
+            b_cs.Instantiate(bullet, gp.transform.position, Quaternion.Euler(player.transform.forward), planet, player);
             yield return new WaitForSeconds(autoFireRate);
         }
     }
