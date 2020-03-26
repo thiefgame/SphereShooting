@@ -843,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 9122175753688036523, guid: a15899827be547847aec0e2b2214d6c9,
         type: 3}
       propertyPath: movement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9122175753688036524, guid: a15899827be547847aec0e2b2214d6c9,
         type: 3}
