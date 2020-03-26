@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour
     Transform hana;
     bool movin = false;
     EnemyGenerator eG;
+    public static float terminationGauge = 0;
 
     public enum Movement
     {
@@ -87,8 +88,14 @@ public class EnemyMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        //エネミーに弾が当たった時の処理
+        if(other.tag == "Bullet")
         {
+            //terminationGaugeを増やす処理
+            terminationGauge += 1;
+           
+
+
             eG.ENum--;
             Destroy(this.gameObject);
         }
